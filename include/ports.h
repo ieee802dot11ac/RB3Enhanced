@@ -248,6 +248,9 @@ void DbgPrint(const char *s, ...);
 #define PORT_INITSONGMETADATA 0x805147a4         // InitSongMetadata
 #define PORT_UPDATEPRESENCE 0x801879d4           // PresenceMgr::UpdatePresence
 #define PORT_STEPSEQUENCEJOBSETSTEP 0x80025364   // Quazal::StepSequenceJob::SetStep
+#define PORT_LASTSINIT_ORIGFUNC 0x806e4180       // The last sinit in .ctors, name unknown
+#define PORT_LASTSINIT_CTORPTR 0x807f0048        // The pointer to previous in .ctors itself
+#define PORT_OBJREGISTERFACTORY 0x80335354       // Hmx::Object::RegisterFactory
 // instance addresses
 #define PORT_MODIFIERMGR_POINTER 0x808fda68 // pointer to ModifierManager
 #define PORT_ROCKCENTRALGATEWAY 0x80900870  // address of RockCentralGateway

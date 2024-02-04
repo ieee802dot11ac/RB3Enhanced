@@ -27,6 +27,9 @@ typedef char *(*ObjFindPathName_t)(Object *thisObject);
 
 extern UIPanel *ObjectFindUIPanel(int *objectDir, char *name, int unk);
 
+typedef Object *(*NewObj)(void);
+extern void ObjRegisterFactory(Symbol, NewObj);
+
 typedef struct _Object_vtable
 {
     // Wii-specific RTTI stuff

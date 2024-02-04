@@ -29,6 +29,10 @@
 #ifndef RB3E_WII
 RB3E_STUB(AppConstructor) // AppConstructor is handled by the BrainSlug engine
 #endif
+#ifdef RB3E_WII
+RB3E_STUB(LastSinit)
+RB3E_STUB(ObjRegisterFactory)
+#endif
 RB3E_STUB(ExecuteDTA)
 RB3E_STUB(SymbolConstruct)
 RB3E_STUB(ModifierActive)

@@ -15,6 +15,9 @@ void ApplyHooks();
 // Startup hook
 void StartupHook(void *ThisApp, int argc, char **argv);
 
+// Single inits, done during sinit initialization
+void SingleInits();
+
 // OS functions - defined in their platform specific C files
 extern int RB3E_Mounted;
 void RB3E_MountFileSystems();

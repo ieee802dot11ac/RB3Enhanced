@@ -187,6 +187,12 @@ void StagekitSetStateHook(int state1, int state2)
 }
 #endif
 
+extern void LastSinit(void);
+void LastSinitHook(void) {
+    LastSinit();
+    SingleInits();
+}
+
 void ApplyPatches()
 {
     // Patch out PlatformMgr::SetDiskError - this effectively nullifies checksum checks on ARKs and MIDs.
@@ -209,6 +215,8 @@ void ApplyPatches()
     POKE_32(PORT_MICCHECK, 0x42800140);
     // always fire the UpdatePresence function. TODO(Emma): look into it, still not firing when screen is changed :/
     POKE_32(PORT_UPDATEPRESENCEBLOCK_B, NOP);
+    // hacky sinit override for single inits
+    POKE_32(PORT_LASTSINIT_CTORPTR, &LastSinitHook);
 #elif RB3E_XBOX
     if (RB3E_IsEmulator())
         POKE_32(PORT_SONGMGR_ISDEMO_CHECK, NOP);
@@ -283,6 +291,7 @@ void SymbolPreInitHook(int stringTableSize, int hashTableSize)
     InitGlobalSymbols();
 }
 
+
 void InitialiseFunctions()
 {
 #ifndef RB3E_WII
@@ -295,6 +304,9 @@ void InitialiseFunctions()
     // TODO: port these to Wii
     POKE_B(&DataFindArray, PORT_DATAARRAYFINDARRAY);
     POKE_B(&DataFindData, PORT_DATAARRAYFINDDATA);
+#endif
+#ifdef RB3E_WII
+    POKE_B(&ObjRegisterFactory, PORT_OBJREGISTERFACTORY);
 #endif
     POKE_B(&SongMgrGetRankedSongs, PORT_SONGMGRGETRANKEDSONGS);
     POKE_B(&PrepareSomeVectorMaybe, PORT_PREPARESOMEVECTORMAYBE);
@@ -393,4 +405,8 @@ void StartupHook(void *ThisApp, int argc, char **argv)
     AppConstructor(ThisApp, argc, argv);
     // anything after here is post-splash
     return;
+}
+
+void SingleInits() {
+    RB3E_DEBUG("test");
 }
