@@ -28,7 +28,7 @@ typedef char *(*ObjFindPathName_t)(Object *thisObject);
 extern UIPanel *ObjectFindUIPanel(int *objectDir, char *name, int unk);
 
 typedef Object *(*NewObj)(void);
-extern void ObjRegisterFactory(Symbol, NewObj);
+extern void ObjRegisterFactory(Symbol typeName, NewObj typeNewObj);
 
 typedef struct _Object_vtable
 {

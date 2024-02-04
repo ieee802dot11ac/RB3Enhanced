@@ -408,5 +408,5 @@ void StartupHook(void *ThisApp, int argc, char **argv)
 }
 
 void SingleInits() {
-    RB3E_DEBUG("test");
+    RB3E_DEBUG("test", NULL);
 }
